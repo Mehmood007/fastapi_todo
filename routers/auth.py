@@ -43,6 +43,7 @@ class CreateUserRequest(BaseModel):
     last_name: str
     password: str
     role: str
+    phone_number: str
 
 
 def authenticate(
@@ -85,6 +86,7 @@ async def create_user(db: db_dependency, user: CreateUserRequest):
         last_name=user.last_name,
         hashed_password=bycrpt_context.hash(user.password),
         role=user.role,
+        phone_number=user.phone_number,
         is_active=True,
     )
 
